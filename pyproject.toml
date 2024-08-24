@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "django_terraform_http_backend"
+version = "0.1.0"
+description = ""
+authors = ["Rashad Ansari <rashad.ansari1996@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+Django = "^4.0.5"
+djangorestframework = "^3.13.1"
+django-simple-history = "^3.1.1"
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+isort = "^5.10.1"
+Flake8-pyproject = "^1.2.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+line_length = 120
+py_version = 38
+known_django = ["django"]
+sections = ["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+skip = ["venv", ".venv"]
+
+[tool.flake8]
+max-line-length = 140
+max-complexity = 10
+exclude = [".venv"]
+extend-ignore = ["E203", "C901"]
