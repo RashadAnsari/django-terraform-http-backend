@@ -40,11 +40,6 @@ class TerraformState(models.Model):
         state, _ = self.objects.get_or_create(state_id=state_id, defaults={"state_data": DEFAULT_STATE})
         return state
 
-    @classmethod
-    def update_or_create(self, state_id: str, state_data: dict) -> "TerraformState":
-        state, _ = self.objects.update_or_create(state_id=state_id, defaults={"state_data": state_data})
-        return state
-
     def save(self, *args, **kwargs):
         self.updated_at = timezone.now()
         return super().save(*args, **kwargs)
