@@ -43,6 +43,7 @@ def state(request: Request, state_id: str) -> Response:
             if terraform_state.is_locked:
                 raise PermissionDenied("State is locked")
             terraform_state.delete()
+            return Response("state deleted.", status=status.HTTP_200_OK)
         except TerraformState.DoesNotExist:
             raise NotFound("State does not exist.")
 
