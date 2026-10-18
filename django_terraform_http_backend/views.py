@@ -6,17 +6,22 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from rest_framework.exceptions import NotFound, PermissionDenied, ValidationError
 from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework.settings import api_settings
 
 from .models import TerraformState
 
 
 def get_authentication_classes():
-    auth_classes = getattr(settings, "TERRAFORM_HTTP_BACKEND_PERMISSION_CLASSES", [])
+    auth_classes = getattr(settings, "TERRAFORM_HTTP_BACKEND_AUTHENTICATION_CLASSES", None)
+    if auth_classes is None:
+        return api_settings.DEFAULT_AUTHENTICATION_CLASSES
     return [import_string(auth_class) for auth_class in auth_classes]
 
 
 def get_permission_classes():
-    perm_classes = getattr(settings, "TERRAFORM_HTTP_BACKEND_PERMISSION_CLASSES", [])
+    perm_classes = getattr(settings, "TERRAFORM_HTTP_BACKEND_PERMISSION_CLASSES", None)
+    if perm_classes is None:
+        return api_settings.DEFAULT_PERMISSION_CLASSES
     return [import_string(perm_class) for perm_class in perm_classes]
 
 
