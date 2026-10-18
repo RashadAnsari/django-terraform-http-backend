@@ -7,7 +7,7 @@ A Django app that implements Terraform's [HTTP state backend](https://developer.
 Requires Python 3.11+, Django 4+, [Django REST framework](https://www.django-rest-framework.org/) and [django-simple-history](https://django-simple-history.readthedocs.io/).
 
 ```bash
-pip install git+https://github.com/RashadAnsari/django-terraform-http-backend.git
+pip install git+https://github.com/RashadAnsari/django-terraform-http-backend.git@v0.1.0
 ```
 
 ```python
